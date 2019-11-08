@@ -6,7 +6,7 @@ import lasdamasrefactoring.models.Error;
 
 
 
-public class CommandView extends SubView {
+public class CommandView extends WithConsoleView {
 
     private static final String[] COLORS = {"blancas", "negras"};
 

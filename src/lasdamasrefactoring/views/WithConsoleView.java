@@ -3,11 +3,11 @@ package lasdamasrefactoring.views;
 import lasdamasrefactoring.utils.Console;
 
 
-class SubView {
+class WithConsoleView {
     
     protected Console console;
 
-    public SubView(){
+    public WithConsoleView(){
         this.console = new Console();
     }
 }

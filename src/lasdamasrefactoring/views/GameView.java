@@ -6,7 +6,7 @@ import lasdamasrefactoring.models.Coordinate;
 
 
 
-public class GameView extends SubView {
+public class GameView extends WithConsoleView {
 
     private static final String[] COLORS = new String[]{"b", "n", " "};
 

@@ -2,7 +2,7 @@ package lasdamasrefactoring.views;
 
 import lasdamasrefactoring.controllers.StartController;
 
-public class StartView extends SubView {
+public class StartView extends WithConsoleView {
 
     public StartView(){
         super();

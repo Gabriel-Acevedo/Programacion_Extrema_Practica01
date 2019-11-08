@@ -3,7 +3,7 @@ package lasdamasrefactoring.views;
 import lasdamasrefactoring.controllers.ResumeController;
 import lasdamasrefactoring.utils.YesNoDialog;
 
-public class ResumeView extends SubView {
+public class ResumeView extends WithConsoleView {
     
     private YesNoDialog yesNoDialog;
 
