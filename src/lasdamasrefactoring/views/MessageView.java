@@ -11,9 +11,11 @@ package lasdamasrefactoring.views;
  */
 public enum MessageView {
     TITLE("Las Damas"),
-    MOVE("Mueven las ##color:"),
+    MOVE("Mueven las ##color: "),
     RESUME("¿Queréis jugar otra"),
     END_GAME("Derrota!!! No puedes mover tus fichas!!!");
+    
+    public static String[] COLORS = {"blancas", "negras"};
     
     private String message;
     
