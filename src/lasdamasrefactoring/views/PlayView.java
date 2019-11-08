@@ -6,9 +6,9 @@ import lasdamasrefactoring.models.Error;
 
 
 
-public class CommandView extends WithConsoleView {
+public class PlayView extends WithConsoleView {
 
-    public CommandView(){
+    public PlayView(){
         super();
     }
 
