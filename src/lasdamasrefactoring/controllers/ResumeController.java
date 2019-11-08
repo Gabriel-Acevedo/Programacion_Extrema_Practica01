@@ -15,7 +15,7 @@ public class ResumeController extends Controller {
 	}
 
 	public void next() {
-        this.session.next();
+            this.session.next();
 	}
 
 	public void reset() {

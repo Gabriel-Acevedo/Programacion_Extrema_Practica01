@@ -9,8 +9,8 @@ public class State {
 	}
 
 	public void next() {
-        assert this.stateValue != StateValue.EXIT;
-		this.stateValue = StateValue.values()[this.stateValue.ordinal() + 1];
+            assert this.stateValue != StateValue.EXIT;
+            this.stateValue = StateValue.values()[this.stateValue.ordinal() + 1];
 	}
 
 	public void reset() {

@@ -12,18 +12,18 @@ public class Logic {
     private StartController startController;
     private PlayController playController;
     private ResumeController resumeController;
-	private Map<StateValue, Controller> controllers;
+    private Map<StateValue, Controller> controllers;
 
 	public Logic() {
-        this.session = new Session();
-        this.controllers = new HashMap<StateValue, Controller>();
-		this.startController = new StartController(this.session);
-		this.playController = new PlayController(this.session);
-		this.resumeController = new ResumeController(this.session);
-		this.controllers.put(StateValue.INITIAL, this.startController);
-		this.controllers.put(StateValue.IN_GAME, this.playController);
-		this.controllers.put(StateValue.FINAL, this.resumeController);
-		this.controllers.put(StateValue.EXIT, null);
+            this.session = new Session();
+            this.controllers = new HashMap<StateValue, Controller>();
+            this.startController = new StartController(this.session);
+            this.playController = new PlayController(this.session);
+            this.resumeController = new ResumeController(this.session);
+            this.controllers.put(StateValue.INITIAL, this.startController);
+            this.controllers.put(StateValue.IN_GAME, this.playController);
+            this.controllers.put(StateValue.FINAL, this.resumeController);
+            this.controllers.put(StateValue.EXIT, null);
 	}
 
 	public Controller getController() {
