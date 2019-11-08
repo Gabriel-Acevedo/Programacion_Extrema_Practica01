@@ -4,8 +4,6 @@ import lasdamasrefactoring.controllers.ResumeController;
 import lasdamasrefactoring.utils.YesNoDialog;
 
 public class ResumeView extends SubView {
-
-    private static final String MESSAGE = "¿Queréis jugar otra";
     
     private YesNoDialog yesNoDialog;
 
@@ -15,7 +13,7 @@ public class ResumeView extends SubView {
     }
 
     public void interact(ResumeController resumeController) {
-        if (this.yesNoDialog.read(ResumeView.MESSAGE)){
+        if (this.yesNoDialog.read(MessageView.RESUME.getMessage())){
             resumeController.reset();
         } else {
             resumeController.next();
