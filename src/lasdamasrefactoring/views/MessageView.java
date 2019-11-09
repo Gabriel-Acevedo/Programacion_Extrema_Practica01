@@ -16,6 +16,7 @@ public enum MessageView {
     END_GAME("Derrota!!! No puedes mover tus fichas!!!");
     
     public static String[] COLORS = {"blancas", "negras"};
+    public static String[] COLORSChar = {"b", "n", " "};
     
     private String message;
     
