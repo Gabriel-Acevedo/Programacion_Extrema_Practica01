@@ -13,7 +13,7 @@ public class GameTest {
     }
 
     @Test
-    public void testGivenNewBoardThenGoodLocations() {
+    public void GameWhenNewBoardThenGoodLocationsTest() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < game.getDimension(); j++) {
                 Coordinate coordinate = new Coordinate(i,j);
@@ -49,27 +49,27 @@ public class GameTest {
     }
 
     @Test
-    public void testGivenGameWhenConstructThenInitialDistribution(){
+    public void GameWhenConstructThenInitialDistribution(){
         assertEquals(Color.WHITE, game.getColor(new Coordinate(5,0)));
         assertEquals(Color.BLACK, game.getColor(new Coordinate(2,1)));
     }
 
     @Test()
-    public void testGivenGameWhenMoveWithOuterCoordinateThenOutCoordinateError() {
+    public void GameOutCoordinateErrorTest() {
         assertEquals(Error.OUT_COORDINATE, this.advance(new Coordinate[][] { 
             { new Coordinate(4, 7), new Coordinate(3, 8) }, 
         }));
     }
 
     @Test
-    public void testGivenGameWhenMoveEmptySquaerThenEmptySquareError() {
+    public void GameEmptyOriginErrorTest() {
         assertEquals(Error.EMPTY_ORIGIN, this.advance(new Coordinate[][] { 
             {  new Coordinate(4, 3), new Coordinate(3, 4), }, 
         }));
     }
 
     @Test
-    public void testGivenGameWhenMoveOppositePieceThenError() {
+    public void GameOppositePieceErrorTest() {
         assertEquals(Error.OPPOSITE_PIECE, this.advance(new Coordinate[][] { 
             { new Coordinate(5, 6), new Coordinate(4, 7) },
             { new Coordinate(2, 7), new Coordinate(3, 6) }, 
@@ -78,14 +78,14 @@ public class GameTest {
     }
 
     @Test
-    public void testGivenGameWhenNotDiagonalMovementThenError() {
+    public void GameNotDiagonalErrorTest() {
         assertEquals(Error.NOT_DIAGONAL, this.advance(new Coordinate[][] { 
             { new Coordinate(5, 2), new Coordinate(4, 2) },
         }));
     }
 
     @Test
-    public void testGivenGameWhenMoveWithNotAdvancedThenError() {
+    public void GameNotAdvancedErrorTest() {
         assertEquals(Error.NOT_ADVANCED, this.advance(new Coordinate[][] { 
             { new Coordinate(5, 6), new Coordinate(4, 7) },
             { new Coordinate(2, 7), new Coordinate(3, 6) }, 
@@ -98,7 +98,7 @@ public class GameTest {
     }
 
     @Test
-    public void testGivenGameWhenNotEmptyTargeThenError() {
+    public void GameNotEmptyTargetErrorTest() {
         assertEquals(Error.NOT_EMPTY_TARGET, this.advance(new Coordinate[][] { 
             { new Coordinate(5, 6), new Coordinate(4, 7) },
             { new Coordinate(2, 7), new Coordinate(3, 6) }, 
@@ -107,7 +107,7 @@ public class GameTest {
     }
 
     @Test
-    public void testGivenGameWhenCorrectMovementThenOk() {
+    public void GameCorrectMovementTest() {
         Coordinate origin = new Coordinate(5, 0);
         Coordinate target = new Coordinate(4, 1);
         this.game.move(origin, target);
@@ -121,7 +121,7 @@ public class GameTest {
     }
 
     @Test
-    public void testGivenGameWhenMovementThenEatPiece() {
+    public void GameWhenEatPieceTest() {
         assertNull(this.advance(new Coordinate[][] { 
             { new Coordinate(5, 0), new Coordinate(4, 1) },
             { new Coordinate(2, 1), new Coordinate(3, 0) }, 
@@ -134,7 +134,7 @@ public class GameTest {
     }
 
     @Test
-    public void testGivenGameWhenEatEmptyPieceThenError() {
+    public void GameEatingEmptyErrorTest() {
         assertEquals(Error.EATING_EMPTY, this.advance(new Coordinate[][] { 
             { new Coordinate(5, 4), new Coordinate(3, 2) },
         })); 
@@ -142,7 +142,7 @@ public class GameTest {
 
     
     @Test
-    public void testGivenGameWhenMoveBadDistanceThenError() {
+    public void GameBadDistanceErrorTest() {
         assertEquals(Error.BAD_DISTANCE, this.advance(new Coordinate[][] { 
             { new Coordinate(6, 1), new Coordinate(3, 4) },
         })); 
