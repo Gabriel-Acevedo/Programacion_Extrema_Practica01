@@ -18,9 +18,9 @@ public class PlayView extends WithConsoleView {
         GameView gameView = new GameView();
         do {
             String command = this.console.readString(MessageView.MOVE.getMessage().replaceFirst("##color", color));
-            int origin = Integer.parseInt(command.substring(0, 2));
-            int target = Integer.parseInt(command.substring(3, 5));
-            error = playController.move(new Coordinate(origin/10-1, origin%10-1), new Coordinate(target/10-1, target%10-1));
+            Coordinate origin = new Coordinate(Integer.parseInt(command.substring(0, 2)));
+            Coordinate target = new Coordinate(Integer.parseInt(command.substring(3, 5)));
+            error = playController.move(origin, target);
             if (error != null){
                 console.writeln("Error!!!" + error.name());
             gameView.write(playController);
