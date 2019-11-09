@@ -23,8 +23,8 @@ public class PlayView extends WithConsoleView {
             error = playController.move(origin, target);
             if (error != null){
                 console.writeln("Error!!!" + error.name());
-            gameView.write(playController);
             }
+            gameView.write(playController);
         } while (error != null); 
         if (playController.isBlocked()){
             this.console.write(MessageView.END_GAME.getMessage());
