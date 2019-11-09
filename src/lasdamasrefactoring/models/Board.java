@@ -2,6 +2,7 @@ package lasdamasrefactoring.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import lasdamasrefactoring.views.MessageView;
 
 class Board {
 
@@ -56,12 +57,12 @@ class Board {
                 pieces.add(this.squares[i][j].getPiece());
             }
         }
-		return pieces;
-	}
+	return pieces;
+    }
     
     int getDimension() {
-		return Board.DIMENSION;
-	}
+	return Board.DIMENSION;
+    }
 
     @Override
     public String toString() {
@@ -89,8 +90,7 @@ class Board {
             if (piece == null) {
                 string += " ";
             } else {
-                final String[] letters = {"b","n"};
-                string += letters[piece.getColor().ordinal()];
+                string += MessageView.COLORSChar[piece.getColor().ordinal()];
             }
         }
         return string + row + "\n";
