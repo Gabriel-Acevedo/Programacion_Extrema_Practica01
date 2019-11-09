@@ -11,7 +11,7 @@ import org.junit.Test;
 public class StartControllerTest {
 
      @Test
-    public void givenStartControllerWhenStartGameThenChangeState() {
+    public void StartControllerChangeStateTest() {
         Session session = new Session();
         StartController startController = new StartController(session);
         assertEquals(StateValue.INITIAL, session.getValueState());
