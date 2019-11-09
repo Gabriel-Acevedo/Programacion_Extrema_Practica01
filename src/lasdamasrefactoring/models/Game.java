@@ -2,96 +2,82 @@ package lasdamasrefactoring.models;
 
 public class Game {
 
-	private Board board;
+    private Board board;
 
-	private Turn turn;
-        
-        private Checkers checkers;
+    private Turn turn;
 
-	public Game() {
-		this.turn = new Turn();
-		this.board = new Board();
-                this.checkers = new Checkers(board,turn);
-		for (int i = 0; i < this.board.getDimension(); i++) {
-			for (int j = 0; j < this.board.getDimension(); j++) {
-				Coordinate coordinate = new Coordinate(i, j);
-				Piece piece = this.getInitialPiece(coordinate);
-				if (piece != null) {
-					this.board.put(coordinate, piece);
-				}
-			}
-		}
-	}
+    private Checkers checkers;
 
-	private Piece getInitialPiece(Coordinate coordinate) {
-		if (coordinate.isBlack()) {
-			final int row = coordinate.getRow();
-			Color color = null;
-			if (row <= 2) {
-				color = Color.BLACK;
-			} else if (row >= 5) {
-				color = Color.WHITE;
-			}
-			if (color != null) {
-				return new Piece(color);
-			}
-		}
-		return null;
-	}
-
-	public Error move(Coordinate origin, Coordinate target) {
-		assert origin != null && target != null;
-		Error error;
-                error = checkers.GeneralMovementCheck(origin, target);
-                if (error!=null){
-                   return error;
+    public Game() {
+        this.turn = new Turn();
+        this.board = new Board();
+        this.checkers = new Checkers(board,turn);
+        for (int i = 0; i < this.board.getDimension(); i++) {
+            for (int j = 0; j < this.board.getDimension(); j++) {
+                Coordinate coordinate = new Coordinate(i, j);
+                Piece piece = this.getInitialPiece(coordinate);
+                if (piece != null) {
+                    this.board.put(coordinate, piece);
                 }
-                
-                Piece piece = this.board.getPiece(origin);
-                if (!piece.isAdvanced(origin, target)) {
-			return Error.NOT_ADVANCED;
-		}
-		if (origin.diagonalDistance(target) >= 3) {
-			return Error.BAD_DISTANCE;
-		}
-                
-		if (origin.diagonalDistance(target) == 2) {
-			Coordinate between = origin.betweenDiagonal(target);
-			if (this.board.getPiece(between) == null) {
-				return Error.EATING_EMPTY;
-			}
-			this.board.remove(between);
-		}
+            }
+        }
+    }
 
-                
-		this.board.move(origin, target);
-		this.turn.change();
-		return null;
-	}
+    private Piece getInitialPiece(Coordinate coordinate) {
+        if (coordinate.isBlack()) {
+            final int row = coordinate.getRow();
+            Color color = null;
+            if (row <= 2) {
+                color = Color.BLACK;
+            } else if (row >= 5) {
+                color = Color.WHITE;
+            }
+            if (color != null) {
+                return new Piece(color);
+            }
+        }
+        return null;
+    }
 
-	public Color getColor(Coordinate coordinate) {
-		return this.board.getColor(coordinate);
-	}
+    public Error move(Coordinate origin, Coordinate target) {
+        assert origin != null && target != null;
+        Error errorGen, ErrorPiece;
+        errorGen = checkers.GeneralMovementCheck(origin, target);
+        if (errorGen!=null){
+           return errorGen;
+        }
+        ErrorPiece = checkers.PieceMovementCheck(origin, target);
+        if (ErrorPiece!=null){
+           return ErrorPiece;
+        }            
+        this.board.move(origin, target);
+        this.turn.change();
+        return null;
+    }
 
-	@Override
-	public String toString() {
-		return this.board + "\n" + this.turn;
-	}
+    public Color getColor(Coordinate coordinate) {
+        return this.board.getColor(coordinate);
+    }
 
-	public Color getColor() {
-		return this.turn.getColor();
-	}
+    @Override
+    public String toString() {
+        return this.board + "\n" + this.turn;
+    }
 
-	public Piece getPiece(Coordinate coordinate) {
-		return this.board.getPiece(coordinate);
-	}
+    public Color getColor() {
+        return this.turn.getColor();
+    }
 
-	public boolean isBlocked() {
-		return this.board.getPieces(this.turn.getColor()).isEmpty();
-	}
+    public Piece getPiece(Coordinate coordinate) {
+        return this.board.getPiece(coordinate);
+    }
 
-	public int getDimension() {
-		return this.board.getDimension();
-	}
+    public boolean isBlocked() {
+        return this.board.getPieces(this.turn.getColor()).isEmpty();
+    }
+
+    public int getDimension() {
+        return this.board.getDimension();
+    }
 
 }
