@@ -10,17 +10,17 @@ public abstract class Controller {
     protected Session session;
 
     protected Controller(Session session) {
-		this.session = session;
+        this.session = session;
     }
 
     public Color getColor(Coordinate coordinate) {
-		return this.session.getColor(coordinate);
-	}
+        return this.session.getColor(coordinate);
+    }
 
-	public int getDimension() {
-		return this.session.getDimension();
-	}
+    public int getDimension() {
+        return this.session.getDimension();
+    }
 
-	abstract public void accept(ControllersVisitor controllersVisitor);
+    abstract public void accept(ControllersVisitor controllersVisitor);
     
 }

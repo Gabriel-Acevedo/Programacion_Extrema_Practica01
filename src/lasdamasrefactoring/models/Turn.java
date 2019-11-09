@@ -13,7 +13,7 @@ class Turn {
     }
 
     public Color getColor() {
-		return this.color;
+        return this.color;
     }
     
     @Override
@@ -21,8 +21,8 @@ class Turn {
         return this.color.name();
     }
 
-	public boolean isColor(Color color2) {
-		return false;
-	}
+    public boolean isColor(Color color2) {
+        return false;
+    }
 
 }

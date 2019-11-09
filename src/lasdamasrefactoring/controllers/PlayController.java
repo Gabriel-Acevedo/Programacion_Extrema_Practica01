@@ -11,32 +11,32 @@ import lasdamasrefactoring.models.Error;
 public class PlayController extends Controller {
 
     public PlayController(Session session) {
-		super(session);
-	}
-
-	public Error move(Coordinate origin, Coordinate target){
-		Error error = this.session.move(origin, target);
-		if (this.session.isBlocked()){
-			this.session.next();
-		}
-		return error;
+        super(session);
     }
 
-	public Piece getPiece(Coordinate coordinate) {
-		return session.getPiece(coordinate);
-	}
+    public Error move(Coordinate origin, Coordinate target){
+        Error error = this.session.move(origin, target);
+        if (this.session.isBlocked()){
+            this.session.next();
+        }
+        return error;
+    }
 
-	public Color getColor() {
-		return session.getColor();
-	}
-	
-	public boolean isBlocked() {
-		return session.isBlocked();
-	}	
+    public Piece getPiece(Coordinate coordinate) {
+        return session.getPiece(coordinate);
+    }
 
-	@Override
-	public void accept(ControllersVisitor controllersVisitor) {
-		controllersVisitor.visit(this);
-	}
+    public Color getColor() {
+        return session.getColor();
+    }
+
+    public boolean isBlocked() {
+        return session.isBlocked();
+    }	
+
+    @Override
+    public void accept(ControllersVisitor controllersVisitor) {
+        controllersVisitor.visit(this);
+    }
 
 }

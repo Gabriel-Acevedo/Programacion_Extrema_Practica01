@@ -40,7 +40,6 @@ public class Game {
     }
 
     public Error move(Coordinate origin, Coordinate target) {
-        assert origin != null && target != null;
         Error errorGen, ErrorPiece;
         errorGen = checkers.GeneralMovementCheck(origin, target);
         if (errorGen!=null){

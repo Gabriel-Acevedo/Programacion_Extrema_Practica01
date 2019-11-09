@@ -18,15 +18,13 @@ public class Coordinate {
     }
 
     public boolean isValid() {
-        return Coordinate.LOWER_LIMIT <= row && row <= Coordinate.UPPER_LIMIT && Coordinate.LOWER_LIMIT <= column
-                && column <= Coordinate.UPPER_LIMIT;
+        return Coordinate.LOWER_LIMIT <= row && row <= Coordinate.UPPER_LIMIT && Coordinate.LOWER_LIMIT <= column && column <= Coordinate.UPPER_LIMIT;
     }
 
     public boolean isDiagonal(Coordinate coordinate) {
         assert coordinate != null && coordinate.isValid();
         assert this.isValid();
-        return this.row + this.column == coordinate.row + coordinate.column
-                || this.row - this.column == coordinate.row - coordinate.column;
+        return this.row + this.column == coordinate.row + coordinate.column|| this.row - this.column == coordinate.row - coordinate.column;
     }
 
     public int diagonalDistance(Coordinate coordinate) {
