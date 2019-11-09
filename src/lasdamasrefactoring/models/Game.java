@@ -5,10 +5,13 @@ public class Game {
 	private Board board;
 
 	private Turn turn;
+        
+        private Checkers checkers;
 
 	public Game() {
 		this.turn = new Turn();
 		this.board = new Board();
+                this.checkers = new Checkers(board,turn);
 		for (int i = 0; i < this.board.getDimension(); i++) {
 			for (int j = 0; j < this.board.getDimension(); j++) {
 				Coordinate coordinate = new Coordinate(i, j);
@@ -38,29 +41,20 @@ public class Game {
 
 	public Error move(Coordinate origin, Coordinate target) {
 		assert origin != null && target != null;
-		if (!origin.isValid() || !target.isValid()) {
-			return Error.OUT_COORDINATE;
-		}
-		if (board.isEmpty(origin)) {
-			return Error.EMPTY_ORIGIN;
-		}
-		Color color = this.board.getColor(origin);
-		if (this.turn.getColor() != color) {
-			return Error.OPPOSITE_PIECE;
-		}
-		if (!origin.isDiagonal(target)) {
-			return Error.NOT_DIAGONAL;
-		}
-		Piece piece = this.board.getPiece(origin);
-		if (!piece.isAdvanced(origin, target)) {
+		Error error;
+                error = checkers.GeneralMovementCheck(origin, target);
+                if (error!=null){
+                   return error;
+                }
+                
+                Piece piece = this.board.getPiece(origin);
+                if (!piece.isAdvanced(origin, target)) {
 			return Error.NOT_ADVANCED;
 		}
 		if (origin.diagonalDistance(target) >= 3) {
 			return Error.BAD_DISTANCE;
 		}
-		if (!this.board.isEmpty(target)) {
-			return Error.NOT_EMPTY_TARGET;
-		}
+                
 		if (origin.diagonalDistance(target) == 2) {
 			Coordinate between = origin.betweenDiagonal(target);
 			if (this.board.getPiece(between) == null) {
@@ -68,6 +62,8 @@ public class Game {
 			}
 			this.board.remove(between);
 		}
+
+                
 		this.board.move(origin, target);
 		this.turn.change();
 		return null;
